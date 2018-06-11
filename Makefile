@@ -1,8 +1,15 @@
 CC=g++
 CFLAGS=-Wall -O3 -mtune=native -std=gnu++11
 LDFLAGS=-lm -pthread -lfltk
-SOURCES=main.cpp
+OBJS=sim.o
+PROGRAM=sworms
 
-all:
-	$(CC) $(CFLAGS) -o sworms $(SOURCES) $(LDFLAGS)
+all: $(OBJS)
+	$(CC) $(CFLAGS) -o $(PROGRAM) $(OBJS) $(LDFLAGS)
 
+%.o: %.cpp
+	g++ $(COPTS) -o $@ -c $*.cpp
+
+clean:
+	rm -f $(PROGRAM)
+	rm -f *.o
