@@ -65,10 +65,10 @@ Subsection text here.
 ## Aspect 2
 Subsection text here.
 
-### Aspect 2a (more special)
+### Aspect 2a
 SubSubsection text here.
 
-### Aspect 2b (more special)
+### Aspect 2b
 SubSubsection text here.
 
 # Discussion
@@ -82,9 +82,9 @@ The conclusion goes here.
 
 ## Future Work
 new open questions? how can we find answers in the future?
-We can we use our solution in the future?
+How can we use our solution in the future?
 
-or better (if you have single subsection or as own section!):
+This may be better (if you have single subsection or as own section!):
 
 **Future Work**: new open questions? how can we find answers in the future?
-We can we use our solution in the future?
+How can we use our solution in the future?
