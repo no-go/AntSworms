@@ -45,7 +45,7 @@
 % *** Authors should verify (and, if needed, correct) their LaTeX system  ***
 % *** with the testflow diagnostic prior to trusting their LaTeX platform ***
 % *** with production work. The IEEE's font choices and paper sizes can   ***
-% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% *** trigger bugs that do not appear when using other class files.       ***
 % The testflow support page is at:
 % http://www.michaelshell.org/tex/testflow/
 
@@ -59,10 +59,13 @@
 % manually specify the path to it like:
 % \documentclass[conference]{../sty/IEEEtran}
 
-\usepackage{german}
 \usepackage[T1]{fontenc} % utf8
 \usepackage[utf8]{inputenc} % utf8
-\usepackage[german]{babel} % deutsche silbentrennung
+
+% -----------------------------------------------------------------------------------
+%\usepackage{german} % Zusammenfassung, Literatur anstelle von Abstract,References
+%\usepackage[german]{babel} % deutsche silbentrennung
+% -----------------------------------------------------------------------------------
 
 
 % Some very useful LaTeX packages include:
@@ -92,7 +95,7 @@
 
 % *** CITATION PACKAGES ***
 %
-%\usepackage{cite}
+\usepackage{cite}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of the IEEE. Loading the cite package will

@@ -13,7 +13,10 @@
 *.out
 *.app
 
+doc/_cites.md
 doc/*.aux
+doc/*.bbl
+doc/*.blg
 doc/*.log
 doc/*.nav
 doc/*.toc
