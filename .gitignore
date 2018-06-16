@@ -13,4 +13,14 @@
 *.out
 *.app
 
+doc/*.aux
+doc/*.log
+doc/*.nav
+doc/*.toc
+doc/*.snm
+doc/*.pyg
+doc/*.out
+doc/*.vrb
+doc/*.dvi
+    
 sworms

@@ -73,8 +73,8 @@ public:
         col.B = 20;
         for (auto & rob : robs) {
             int last = rob.orient;
-            rob.orient = random() % 8;
-            //rob.orient = (last + (1 - random() % 3)) % 8;
+            //rob.orient = random() % 8;
+            rob.orient = (last + (1 - random() % 3)) % 8;
             //rob.hey(this);
             set(rob.x, rob.y, col);
             rob.move();
