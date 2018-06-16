@@ -84,4 +84,7 @@ The conclusion goes here.
 new open questions? how can we find answers in the future?
 We can we use our solution in the future?
 
+or better (if you have single subsection or as own section!):
 
+**Future Work**: new open questions? how can we find answers in the future?
+We can we use our solution in the future?
