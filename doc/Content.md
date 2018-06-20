@@ -54,15 +54,44 @@ A conference article or paper should have the following elements:
 
 # Introduction
 
-<!-- no \IEEEPARstart -->
+blah
+
+# Notes
 
 This demo file is
 intended[@Tentschert2000] to serve as demo. I wish you the best[@li2014chaos] of success.
 test test[@gonzalez2017smells] ...
 
+Building robots in hardware to test a swarm algorithm is possible, but
+expensive [hardware](https://en.wikipedia.org/wiki/Swarm_robotic_platforms)
+
+A hardware specific simulation of a single device exists, too:
+[BLE Ant client sim](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.sdk52.v0.9.0%2Fant_examples_ant_fs.html)
+
+Using VM with router/device firmware and a network layout should be
+interessting: [Network sim](https://www.gns3.com/community)
+
+## Ant algorithm
+
+
+## Bee algorithm
+
+1.  Ein kleiner teil der Bienen (Scouts) sucht global nach "gärten"
+2.  Da Gärten, wo es viel "Futter" gibt ein großes Areal sind, kommen viele Scouts
+    zum dance-floor zurück mit ähnlichen Koordinaten
+3.  normale Bienen folgen nun den Scouts und verbreiten sich im Areal (Nahsuche)
+4.  ein Teil fliegt als Scout weiter und sucht neue Gärten
+5.  durch die Nahsuche werden schlechte Regionen von den Bienen ausgeschlossen
+    und bessere Regionen "gespeichert"
+6.  Biene, die bessere Region fand, wird neuer Scout und fliegt zum dance floor
+7.  Biene, die in der Region keine Verbesserung nach einer Weile fand, sucht neue Gärten
+
+<!--
+
 \hfill J. Peters
 \hfill \today
 
+-->
 
 # Related Work
 intro about solutions and our special new solution/idea.
