@@ -56,6 +56,9 @@ A conference article or paper should have the following elements:
 
 blah
 
+todo bee: store as a waggle dance, calculate and handle the goodness of location, 
+near search and decision of a worker to be a scout, collecting limit for near search
+
 # Notes
 
 This demo file is
@@ -73,6 +76,7 @@ interessting: [Network sim](https://www.gns3.com/community)
 
 ## Ant algorithm
 
+1.  clever
 
 ## Bee algorithm
 
