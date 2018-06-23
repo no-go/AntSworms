@@ -109,8 +109,26 @@ intro about selected data, getting them and how we analyse them
 
 ## Definitions and Taxonomy
 
-more details about focused parameter and an intro to different
-tests and aspects we focused in our work.
+Parameters
+
+- different food area size
+- different distance between food area and home
+- different count of food areas
+- different direction random size
+- different prefer pattern for dusty tiles
+- different amount, how strong the way decisions effects on setting the new dust
+- better to add or multiply dust on a tile
+- loosing dust on tiles rate
+- different hunger limits (?)
+- different random seeds (?)
+
+Effects
+
+- development of collected food (%) in 1000 iterations
+- used dust (sum) over 1000 iterations
+- how many died (how long did they life)
+- development of random-, jam- and dust-decisions (%) in a simulation
+- distance after last 10 steps before dying (ant traps?)
 
 ## Aspect 1
 Subsection text here.
