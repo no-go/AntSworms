@@ -54,10 +54,75 @@ A conference article or paper should have the following elements:
 
 # Introduction
 
-blah
+Primitive Algorithmen wie den Ant-Algorithmus sind bereits seit vielen Jahren
+bekannt. Dieser nutzt einen Duftstoff, der in einer Region von jedem Teilnehmer
+freigesetzt wird, um eine Art kollektiven Speicher zu verwirklichen. Ziel
+ist es auf diese Art Spuren für andere Teilnehmer zu hinterlassen, welche
+zu Futterquellen führen. Dieses Futter soll dann ins Nest getragen werden.
+Je mehr Ameisen auf einer gelegten Spur laufen, desto stärker wird diese
+Spur. Theoretische Modelle zeigen, dass sich dadurch sogar kürzere Wege
+zurück ins Nest durchsetzen, da diese Wege von den Ameisen, die ihn gefunden
+haben, häufiger frequentiert wird - die Duftspur wird so verstärkt.
+In der Literatur finden sich viele Variationen und theoretische Modelle,
+wie ein solcher Algorithmus, durch die Natur motiviert, nachgebildet werden
+kann. Z.B. sind lokale Algorithmen (verteilte Algorithmen mit linearer Laufzeit,
+die nicht von der Größe des Netzes abhängig sind), einem Schwarm-Algorithmus
+wie dem Ant-Algorithmus sehr ähnlich, betrachten aber keine kontinuierliche
+Veränderung der Daten Aufgrund von Bewegungen. Schaut man sich
+in der Literatur die Ant-Algorithmen im Detail an, so wird der Erfolg
+einer Ameisen-Kolonie bei gewählten Parametern, die das Legen der
+Duftspuren und deren "Verwitterung" beeinflussen, kaum behandelt. Ebenso gibt
+es beim Ant-Algorithmus einen Aspekt, der bei der ältesten Art, den Wanderameisen,
+besondere Aufmerksamkeit verdient: "Ameisenmülen". In diesem Fall laufen
+alle Ameisen im Kreis und sterben an Erschöpfung, da sie so keine weiteren
+Futerquellen finden. Ein weiterer Punkt, der einen Erfolg eines zu primitiven
+Ant-Algorithmus in Frage stellt, sind Ameisen-Straßen, die zu versiegten
+Futterquellen führen. Wir konnten in unseren Simulationen beide "Fehlentwicklungen"
+beobachten.
 
-todo bee: store as a waggle dance, calculate and handle the goodness of location, 
-near search and decision of a worker to be a scout, collecting limit for near search
+Man kann den Ant-Algorithmus durch Hinzunahme von GPS, Funktechnik und
+einem großen Arbeitsspeicher zur modifizieren, um ein solches Fehlverhalten
+zu erkennen oder zu verhindern, aber diese Modifikationen setzen
+folgendes voraus:
+
+- elektrische Energie
+- Rechenleistung
+- mindestens die Größe des Chips 
+- bedenkenlose Anwendung von Funkwellen
+- Speichermedium
+
+Raketensteuerungen von Atombomben werden oft von pneumatischen (Staubsaugermotoren und Klappen
+wie bei Zuse II) oder hydraulischen Systemen betrieben, damit sie bei einem
+elektromagnitischen Impuls einer anderen Bombe noch weiter funktionieren.
+In der Atmospähre eines anderen Planeten könnte eine Elektronik z.B. wegen der
+starken statischen Ladung des Marsstaubs ähnliche Probleme verursachen.
+Unter Wasser oder in einem sandigem Medium können GPS und Funkwellen kaum
+bis gar nicht genutzt werden. Schaut man sich aktuelle Nanotechnologien
+an, so werden chemische Botenstoffe zur Auslösung bestimmter Reaktionen,
+interessanter, als mit Funktechnik Roboter in unserer Blutbahn kommunizieren
+zu lassen. In der Natur werden bereits Hormone (und keine Funkwellen) als
+Kommunikation eingesetzt. Sollte man chemische Propeller an Makromolekülen bilden oder
+betreiben, die durch eine chemische Reaktion aufgrund einer bestimmten
+Konzentration eines künstlichen Hormons an der Stelle des Moleküls, an dem
+der Propeller sitzt, so sind logische Operationen oder gar Speichermedien
+in einem Molekül begrenzt. Durch künstliche Methabolismen
+eine turingvollständige Sprache bilden, die als Eingabe Konzentrationen
+von bestimmten Molekülen akzeptiert und gleiches als Ausgabemedium zur
+Steuerung einer molekularen Struktur erzeugt, mag heute noch nach Science
+Fiction klingen - findet aber bereits in Laboren statt. (todo: hier fehlt
+mir noch eine Referenz)
+
+Es ist also nicht vollkommen abwegig, einen Ant-Algorithmus so simple
+wie möglich zu halten, der die Umgebung als Massenspeicher nutzt, welche mit
+dem Operationsgebiet mitwächst. Wir haben diesen Aspekt der Einfachheit in
+Hinblick auf Erfolg und Robustheit bzgl. äußerer Parameter untersucht und
+kommen zu dem Ergebnis, dass auch andere natürliche Aspekte der
+Wanderameise eine wichtige Rolle Spielen müssen, was diese Spezies so
+lange parallel zu anderen Ameisenarten hat erfolgreich koexistieren lassen.
+
+
+
+
 
 # Notes
 

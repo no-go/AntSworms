@@ -1,6 +1,81 @@
 \section{Introduction}\label{introduction}
 
-blah
+Primitive Algorithmen wie den Ant-Algorithmus sind bereits seit vielen
+Jahren bekannt. Dieser nutzt einen Duftstoff, der in einer Region von
+jedem Teilnehmer freigesetzt wird, um eine Art kollektiven Speicher zu
+verwirklichen. Ziel ist es auf diese Art Spuren für andere Teilnehmer zu
+hinterlassen, welche zu Futterquellen führen. Dieses Futter soll dann
+ins Nest getragen werden. Je mehr Ameisen auf einer gelegten Spur
+laufen, desto stärker wird diese Spur. Theoretische Modelle zeigen, dass
+sich dadurch sogar kürzere Wege zurück ins Nest durchsetzen, da diese
+Wege von den Ameisen, die ihn gefunden haben, häufiger frequentiert wird
+- die Duftspur wird so verstärkt. In der Literatur finden sich viele
+Variationen und theoretische Modelle, wie ein solcher Algorithmus, durch
+die Natur motiviert, nachgebildet werden kann. Z.B. sind lokale
+Algorithmen (verteilte Algorithmen mit linearer Laufzeit, die nicht von
+der Größe des Netzes abhängig sind), einem Schwarm-Algorithmus wie dem
+Ant-Algorithmus sehr ähnlich, betrachten aber keine kontinuierliche
+Veränderung der Daten Aufgrund von Bewegungen. Schaut man sich in der
+Literatur die Ant-Algorithmen im Detail an, so wird der Erfolg einer
+Ameisen-Kolonie bei gewählten Parametern, die das Legen der Duftspuren
+und deren ``Verwitterung'' beeinflussen, kaum behandelt. Ebenso gibt es
+beim Ant-Algorithmus einen Aspekt, der bei der ältesten Art, den
+Wanderameisen, besondere Aufmerksamkeit verdient: ``Ameisenmülen''. In
+diesem Fall laufen alle Ameisen im Kreis und sterben an Erschöpfung, da
+sie so keine weiteren Futerquellen finden. Ein weiterer Punkt, der einen
+Erfolg eines zu primitiven Ant-Algorithmus in Frage stellt, sind
+Ameisen-Straßen, die zu versiegten Futterquellen führen. Wir konnten in
+unseren Simulationen beide ``Fehlentwicklungen'' beobachten.
+
+Man kann den Ant-Algorithmus durch Hinzunahme von GPS, Funktechnik und
+einem großen Arbeitsspeicher zur modifizieren, um ein solches
+Fehlverhalten zu erkennen oder zu verhindern, aber diese Modifikationen
+setzen folgendes voraus:
+
+\begin{itemize}
+\tightlist
+\item
+  elektrische Energie
+\item
+  Rechenleistung
+\item
+  mindestens die Größe des Chips
+\item
+  bedenkenlose Anwendung von Funkwellen
+\item
+  Speichermedium
+\end{itemize}
+
+Raketensteuerungen von Atombomben werden oft von pneumatischen
+(Staubsaugermotoren und Klappen wie bei Zuse II) oder hydraulischen
+Systemen betrieben, damit sie bei einem elektromagnitischen Impuls einer
+anderen Bombe noch weiter funktionieren. In der Atmospähre eines anderen
+Planeten könnte eine Elektronik z.B. wegen der starken statischen Ladung
+des Marsstaubs ähnliche Probleme verursachen. Unter Wasser oder in einem
+sandigem Medium können GPS und Funkwellen kaum bis gar nicht genutzt
+werden. Schaut man sich aktuelle Nanotechnologien an, so werden
+chemische Botenstoffe zur Auslösung bestimmter Reaktionen,
+interessanter, als mit Funktechnik Roboter in unserer Blutbahn
+kommunizieren zu lassen. In der Natur werden bereits Hormone (und keine
+Funkwellen) als Kommunikation eingesetzt. Sollte man chemische Propeller
+an Makromolekülen bilden oder betreiben, die durch eine chemische
+Reaktion aufgrund einer bestimmten Konzentration eines künstlichen
+Hormons an der Stelle des Moleküls, an dem der Propeller sitzt, so sind
+logische Operationen oder gar Speichermedien in einem Molekül begrenzt.
+Durch künstliche Methabolismen eine turingvollständige Sprache bilden,
+die als Eingabe Konzentrationen von bestimmten Molekülen akzeptiert und
+gleiches als Ausgabemedium zur Steuerung einer molekularen Struktur
+erzeugt, mag heute noch nach Science Fiction klingen - findet aber
+bereits in Laboren statt. (todo: hier fehlt mir noch eine Referenz)
+
+Es ist also nicht vollkommen abwegig, einen Ant-Algorithmus so simple
+wie möglich zu halten, der die Umgebung als Massenspeicher nutzt, welche
+mit dem Operationsgebiet mitwächst. Wir haben diesen Aspekt der
+Einfachheit in Hinblick auf Erfolg und Robustheit bzgl. äußerer
+Parameter untersucht und kommen zu dem Ergebnis, dass auch andere
+natürliche Aspekte der Wanderameise eine wichtige Rolle Spielen müssen,
+was diese Spezies so lange parallel zu anderen Ameisenarten hat
+erfolgreich koexistieren lassen.
 
 \section{Notes}\label{notes}
 
@@ -19,7 +94,16 @@ Ant client sim}
 Using VM with router/device firmware and a network layout should be
 interessting: \href{https://www.gns3.com/community}{Network sim}
 
-Also:
+\subsection{Ant algorithm}\label{ant-algorithm}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  clever
+\end{enumerate}
+
+\subsection{Bee algorithm}\label{bee-algorithm}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -38,14 +122,12 @@ Also:
   durch die Nahsuche werden schlechte Regionen von den Bienen
   ausgeschlossen und bessere Regionen ``gespeichert''
 \item
-  Biene, die bessere Region fand, wird neuer Scout und fiegt zum dance
+  Biene, die bessere Region fand, wird neuer Scout und fliegt zum dance
   floor
 \item
   Biene, die in der Region keine Verbesserung nach einer Weile fand,
   sucht neue Gärten
 \end{enumerate}
-
-\hfill J. Peters \hfill \today
 
 \section{Related Work}\label{related-work}
 
@@ -63,8 +145,48 @@ intro about selected data, getting them and how we analyse them
 
 \subsection{Definitions and Taxonomy}\label{definitions-and-taxonomy}
 
-more details about focused parameter and an intro to different tests and
-aspects we focused in our work.
+Parameters
+
+\begin{itemize}
+\tightlist
+\item
+  different food area size
+\item
+  different distance between food area and home
+\item
+  different count of food areas
+\item
+  different direction random size
+\item
+  different prefer pattern for dusty tiles
+\item
+  different amount, how strong the way decisions effects on setting the
+  new dust
+\item
+  better to add or multiply dust on a tile
+\item
+  loosing dust on tiles rate
+\item
+  different hunger limits (?)
+\item
+  different random seeds (?)
+\end{itemize}
+
+Effects
+
+\begin{itemize}
+\tightlist
+\item
+  development of collected food (\%) in 1000 iterations
+\item
+  used dust (sum) over 1000 iterations
+\item
+  how many died (how long did they life)
+\item
+  development of random-, jam- and dust-decisions (\%) in a simulation
+\item
+  distance after last 10 steps before dying (ant traps?)
+\end{itemize}
 
 \subsection{Aspect 1}\label{aspect-1}
 
