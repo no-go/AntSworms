@@ -1,4 +1,4 @@
-OUTFILE = simulate_bug_algorithm
+OUTFILE = lightweight_ant_algorithm_with_ant_mill_protection
 
 all:
 #	sed -E "s/\[\@([^ ]+)\]/~\\cite\{\1\}/g" Content.md > _cites.md

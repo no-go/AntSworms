@@ -112,19 +112,16 @@ Steuerung einer molekularen Struktur erzeugt, mag heute noch nach Science
 Fiction klingen - findet aber bereits in Laboren statt. (todo: hier fehlt
 mir noch eine Referenz)
 
-Es ist also nicht vollkommen abwegig, einen Ant-Algorithmus so simple
-wie möglich zu halten, der die Umgebung als Massenspeicher nutzt, welche mit
-dem Operationsgebiet mitwächst. Wir haben diesen Aspekt der Einfachheit in
-Hinblick auf Erfolg und Robustheit bzgl. äußerer Parameter untersucht und
-kommen zu dem Ergebnis, dass auch andere natürliche Aspekte der
-Wanderameise eine wichtige Rolle Spielen müssen, was diese Spezies so
-lange parallel zu anderen Ameisenarten hat erfolgreich koexistieren lassen.
+
 
 
 
 
 
 # Notes
+
+We added a simple traffic jam control to each unit and measured a better food supply.
+
 
 This demo file is
 intended[@Tentschert2000] to serve as demo. I wish you the best[@li2014chaos] of success.
@@ -206,7 +203,8 @@ intro, offer explanation and reference to literature
 
 
 # Conclusion
-The conclusion goes here.
+
+...
 
 **Future Work**: new open questions? how can we find answers in the future?
 How can we use our solutions in the future?
