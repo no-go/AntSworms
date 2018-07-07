@@ -1,4 +1,24 @@
-\section{Introduction}\label{introduction}
+\section{Introduction (not ready)}\label{introduction-not-ready}
+
+In contrast to bees, the simulated ants did not split into a searching
+and a collecting behavior in that case.
+
+We added a simple traffic jam control to each unit and measured a better
+food supply.
+
+This demo file is intended~\cite{Tentschert2000} to serve as demo. I wish
+you the best~\cite{li2014chaos} of success. test
+test~\cite{gonzalez2017smells} \ldots{}
+
+Molecular machines, optical digital processing units and analogue
+computers with a pneumatic logical unit are able to work in special
+environments, where modern micro controllers are too large, use too much
+electric energy or are not resistant to massive electromagnetic forces.
+Many of these techniques are unable to use wireless communication,
+unable to store big data sizes or do millions of instructions of a
+complex algorithm. If you want to solve a big problem with it, you have
+to solve it in a collective opportunistic way with a simple logic for
+each unit.
 
 Primitive Algorithmen wie den Ant-Algorithmus sind bereits seit vielen
 Jahren bekannt. Dieser nutzt einen Duftstoff, der in einer Region von
@@ -18,33 +38,7 @@ Ant-Algorithmus sehr ähnlich, betrachten aber keine kontinuierliche
 Veränderung der Daten Aufgrund von Bewegungen. Schaut man sich in der
 Literatur die Ant-Algorithmen im Detail an, so wird der Erfolg einer
 Ameisen-Kolonie bei gewählten Parametern, die das Legen der Duftspuren
-und deren ``Verwitterung'' beeinflussen, kaum behandelt. Ebenso gibt es
-beim Ant-Algorithmus einen Aspekt, der bei der ältesten Art, den
-Wanderameisen, besondere Aufmerksamkeit verdient: ``Ameisenmülen''. In
-diesem Fall laufen alle Ameisen im Kreis und sterben an Erschöpfung, da
-sie so keine weiteren Futerquellen finden. Ein weiterer Punkt, der einen
-Erfolg eines zu primitiven Ant-Algorithmus in Frage stellt, sind
-Ameisen-Straßen, die zu versiegten Futterquellen führen. Wir konnten in
-unseren Simulationen beide ``Fehlentwicklungen'' beobachten.
-
-Man kann den Ant-Algorithmus durch Hinzunahme von GPS, Funktechnik und
-einem großen Arbeitsspeicher zur modifizieren, um ein solches
-Fehlverhalten zu erkennen oder zu verhindern, aber diese Modifikationen
-setzen folgendes voraus:
-
-\begin{itemize}
-\tightlist
-\item
-  elektrische Energie
-\item
-  Rechenleistung
-\item
-  mindestens die Größe des Chips
-\item
-  bedenkenlose Anwendung von Funkwellen
-\item
-  Speichermedium
-\end{itemize}
+und deren ``Verwitterung'' beeinflussen, kaum behandelt.
 
 Raketensteuerungen von Atombomben werden oft von pneumatischen
 (Staubsaugermotoren und Klappen wie bei Zuse II) oder hydraulischen
@@ -68,62 +62,7 @@ gleiches als Ausgabemedium zur Steuerung einer molekularen Struktur
 erzeugt, mag heute noch nach Science Fiction klingen - findet aber
 bereits in Laboren statt. (todo: hier fehlt mir noch eine Referenz)
 
-\section{Notes}\label{notes}
-
-We added a simple traffic jam control to each unit and measured a better
-food supply.
-
-This demo file is intended~\cite{Tentschert2000} to serve as demo. I wish
-you the best~\cite{li2014chaos} of success. test
-test~\cite{gonzalez2017smells} \ldots{}
-
-Building robots in hardware to test a swarm algorithm is possible, but
-expensive
-\href{https://en.wikipedia.org/wiki/Swarm_robotic_platforms}{hardware}
-
-A hardware specific simulation of a single device exists, too:
-\href{https://infocenter.nordicsemi.com/index.jsp?topic=\%2Fcom.nordic.infocenter.sdk52.v0.9.0\%2Fant_examples_ant_fs.html}{BLE
-Ant client sim}
-
-Using VM with router/device firmware and a network layout should be
-interessting: \href{https://www.gns3.com/community}{Network sim}
-
-\subsection{Ant algorithm}\label{ant-algorithm}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  clever
-\end{enumerate}
-
-\subsection{Bee algorithm}\label{bee-algorithm}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Ein kleiner teil der Bienen (Scouts) sucht global nach ``gärten''
-\item
-  Da Gärten, wo es viel ``Futter'' gibt ein großes Areal sind, kommen
-  viele Scouts zum dance-floor zurück mit ähnlichen Koordinaten
-\item
-  normale Bienen folgen nun den Scouts und verbreiten sich im Areal
-  (Nahsuche)
-\item
-  ein Teil fliegt als Scout weiter und sucht neue Gärten
-\item
-  durch die Nahsuche werden schlechte Regionen von den Bienen
-  ausgeschlossen und bessere Regionen ``gespeichert''
-\item
-  Biene, die bessere Region fand, wird neuer Scout und fliegt zum dance
-  floor
-\item
-  Biene, die in der Region keine Verbesserung nach einer Weile fand,
-  sucht neue Gärten
-\end{enumerate}
-
-\section{Related Work}\label{related-work}
+\section{Related Work (not ready)}\label{related-work-not-ready}
 
 intro about solutions and our special new solution/idea. iter through
 related work with focus on different solutions. Why are some aspects
@@ -131,9 +70,119 @@ open?
 
 \section{Methods}\label{methods}
 
-Describe technique, structure and data collection of our solution.
+The simulation of our ant algorithm was splitted into the following
+parts:
 
-\section{Results}\label{results}
+\begin{itemize}
+\tightlist
+\item
+  a simulator (doing 1000 loops)
+\item
+  a world (2 dimensional)
+\item
+  food tiles (marked as food with a nutritive value)
+\item
+  pheromone tiles
+\item
+  30 robot objects (each with our ant algorithm)
+\end{itemize}
+
+In this chapter we explain each part and who we initialized it with
+fixed values. The last chapter is about our ant algorithm and the
+traffic jam control to prevent ant mills.
+
+\subsection{Simulated parts and their
+interaction}\label{simulated-parts-and-their-interaction}
+
+We did not want to print any code here to make it easy to implement the
+parts, concept and objects in your preferred system, language or medium.
+
+\subsubsection{World}\label{world}
+
+Our world is a 2 dimensional hex grid. Thus our robots and tiles can
+only placed into that grid. The worlds are generated with 10 different
+random seeds to place food tiles with different area sizes, positions
+and nutritive values. When we measured a new result with a different
+parameter, we simulated it with the same 10 different worlds and build a
+cumulative value.
+
+This hex grid is placed on a normal \((x,y)\) coordinate system, but the
+placement of each robot and tile must fit into the hex grid. If we talk
+about distances we use the euclidean distance based on that x and y
+values.
+
+\subsubsection{Robots (ant)}\label{robots-ant}
+
+We initialized the simulator with 30 ants placed on \((0,0)\) in the
+world (we call it \emph{home}). Thus they start with a traffic jam. Each
+ant has a \emph{hunger level}. If an ant does not reach any food or
+carries it to home, the hunger level is increment by one. If the limit
+reaches \textbf{50}, it dies immediately and respawns at home. Every ant
+is awaked by each simulator iteration and runs our ant algorithm with
+traffic jam control.
+
+Because of the hex grid, the ant can only move to 6 neighbor fields. For
+Example if the ant starts at \((0,0)\) and is awaked by the simulator,
+it can make a step to \((-1.0, 0.0)\), \((1.0, 0.0)\), \((-0.5, 1.0)\),
+\((-0.5, -1.0)\), \((0.5, 1.0)\) or \((0.5, -1.0)\).
+
+\subsubsection{Food tiles}\label{food-tiles}
+
+Every food tile is part of an food area. In a world generated by a seed
+these areas can have a size between 1 and 16 tiles. A world can have up
+to \(30\) areas. Each tile is generated with a nutritive value between
+\(1\) and \(20\). If an ant reaches the food tile, the nutritive value
+is decremented by one. If the nutritive value is zero, the food tile is
+deleted immediately. The initial placement of the areas is handled by a
+random seed. There are two different concepts placing them with a
+maximal area distance of \(20\) (\(\pm\) 5):
+
+\begin{itemize}
+\tightlist
+\item
+  spray
+\item
+  ordered
+\end{itemize}
+
+The spray concept setting an area on a random position and place the
+next area randomly (but not to far away). Finally the sprayed areas are
+centered in the middle of the world.
+
+The ordered concept is a grid arranged around the ant home location. The
+position is very by \(5\).
+
+We decided to choose these concept to get random worlds with reachable
+food for the ants. Vary the maximal distance of the ant and/or vary the
+maximal distance of each area may focused in future work.
+
+\subsubsection{Pheromone tiles}\label{pheromone-tiles}
+
+The pheromone tiles are generated by ants, if an ant finds food and
+running back to home. This is the only way creating tiles. We store the
+pheromone potency internally in an alpha value with \(1.0\) as maximum.
+The ants are able to increment this value. A tile with a \emph{potency}
+less than \(0.0001\) will be removed by the simulator. You can define it
+as a detection level of an ant, if you want.
+
+After all ants do their work after a simulator iteration, the tiles will
+be deleted or the potency will be reduced by a \emph{evaporation}:
+
+\[ potency_{i+1} = \frac{100 - evaporation}{100} * potency_{i} \]
+
+\subsubsection{Simulator}\label{simulator}
+
+The Simulator loads the world with it special seed and iterated \(1000\)
+times through \(30\) ants. Thus a single ant is being \(wakeup()\) for
+\(1000\) times to walk, detect, collect or setting/changing a pheromone
+tile.
+
+\subsection{Ant algorithm with traffic jam
+control}\label{ant-algorithm-with-traffic-jam-control}
+
+todo \ldots{}
+
+\section{Results (not ready)}\label{results-not-ready}
 
 intro about selected data, getting them and how we analyse them
 
@@ -194,9 +243,44 @@ Subsection text here.
 
 intro, offer explanation and reference to literature
 
-\section{Conclusion}\label{conclusion}
+\section{Conclusion (not ready)}\label{conclusion-not-ready}
 
-\ldots{}
+Ebenso gibt es beim Ant-Algorithmus einen Aspekt, der bei der ältesten
+Art, den Wanderameisen, besondere Aufmerksamkeit verdient:
+``Ameisenmülen''. In diesem Fall laufen alle Ameisen im Kreis und
+sterben an Erschöpfung, da sie so keine weiteren Futerquellen finden.
+Ein weiterer Punkt, der einen Erfolg eines zu primitiven Ant-Algorithmus
+in Frage stellt, sind Ameisen-Straßen, die zu versiegten Futterquellen
+führen. Wir konnten in unseren Simulationen beide ``Fehlentwicklungen''
+beobachten.
+
+Man kann den Ant-Algorithmus durch Hinzunahme von GPS, Funktechnik und
+einem großen Arbeitsspeicher zur modifizieren, um ein solches
+Fehlverhalten zu erkennen oder zu verhindern, aber diese Modifikationen
+setzen folgendes voraus:
+
+\begin{itemize}
+\tightlist
+\item
+  elektrische Energie
+\item
+  Rechenleistung
+\item
+  mindestens die Größe des Chips
+\item
+  bedenkenlose Anwendung von Funkwellen
+\item
+  Speichermedium
+\end{itemize}
+
+Es ist also nicht vollkommen abwegig, einen Ant- Algorithmus so simple
+wie möglich zu halten, der die Umge- bung als Massenspeicher nutzt,
+welche mit dem Operations- gebiet mitwächst. Wir haben diesen Aspekt der
+Einfachheit in Hinblick auf Erfolg und Robustheit bzgl. äußerer
+Parameter untersucht und kommen zu dem Ergebnis, dass auch andere
+natürliche Aspekte der Wanderameise eine wichtige Rolle Spielen müssen,
+was diese Spezies so lange parallel zu anderen Ameisenarten hat
+erfolgreich koexistieren lassen.
 
 \textbf{Future Work}: new open questions? how can we find answers in the
 future? How can we use our solutions in the future?

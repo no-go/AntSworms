@@ -1,58 +1,26 @@
-<!-- ABSTACT
 
-From IEEE:
+# Introduction (not ready)
 
-A conference article or paper should have the following elements:
- Metadata: title, keywords, abstract, professional affiliation(s), and cited references in
-    the bibliography must be included, and written in the English Language.
+In contrast to bees, the
+simulated ants did not split into a searching and a collecting behavior in
+that case.
 
- Abstract: a brief and objective summary that previews the rest of the paper it describes.
-    It should be succinct yet provide enough information about the paper to facilitate a
-    decision on whether the entire paper could be read with profit.
+We added a simple traffic jam control to each unit and measured a better food supply.
 
- Introduction: an introductory statement of the purpose of the paper, usually describing
-    the hypothesis that will be tested and a summary of related previous work by others.
 
- Methods: the methods that are used to test the hypothesis should be given in sufficient
-    detail that another researcher in the field could duplicate the testing.
+This demo file is
+intended[@Tentschert2000] to serve as demo. I wish you the best[@li2014chaos] of success.
+test test[@gonzalez2017smells] ...
 
- Results: the hypothesis should be tested and data representing the results of the testing
-    presented.
+ Molecular machines, optical digital processing units and analogue computers
+with a pneumatic logical unit are able to work in special environments, where
+modern micro controllers are too large, use too much electric energy or are
+not resistant to massive electromagnetic forces. Many of these techniques are
+unable to use wireless communication, unable to store big data sizes or
+do millions of instructions of a complex algorithm.
+If you want to solve a big problem with it, you have to solve it in a 
+collective opportunistic way with a simple logic for each unit. 
 
- Conclusion: the data should be discussed and the results interpreted, and conclusions 
-    given.
-
- # Introduction
- whats does others do, open questions, we are interested in..,
- we want to answer or focused on ... (Motivation)
- what is the problem?
- 
- # Related Work
- intro about solutions and our special new solution/idea.
- iter through related work with focus on different solutions. Why are some aspects open?
-
- # Methodology
- 
- # Results
- ## Definitions and Taxonomy
- ## Aspect 1
- ## Aspect 2
- ## Aspect 3
-
- # Discussion
- intro, offer explanation and reference to literature
- 
- ## Conclusion
- ## Future Work
- new open questions? how can we find answers in the future?
- We can we use our solution in the future?
-
- # Acknowledgement
- !!! conference papers do not normally have an appendix !!!
- # Bibliography
--->
-
-# Introduction
 
 Primitive Algorithmen wie den Ant-Algorithmus sind bereits seit vielen Jahren
 bekannt. Dieser nutzt einen Duftstoff, der in einer Region von jedem Teilnehmer
@@ -71,25 +39,10 @@ wie dem Ant-Algorithmus sehr ähnlich, betrachten aber keine kontinuierliche
 Veränderung der Daten Aufgrund von Bewegungen. Schaut man sich
 in der Literatur die Ant-Algorithmen im Detail an, so wird der Erfolg
 einer Ameisen-Kolonie bei gewählten Parametern, die das Legen der
-Duftspuren und deren "Verwitterung" beeinflussen, kaum behandelt. Ebenso gibt
-es beim Ant-Algorithmus einen Aspekt, der bei der ältesten Art, den Wanderameisen,
-besondere Aufmerksamkeit verdient: "Ameisenmülen". In diesem Fall laufen
-alle Ameisen im Kreis und sterben an Erschöpfung, da sie so keine weiteren
-Futerquellen finden. Ein weiterer Punkt, der einen Erfolg eines zu primitiven
-Ant-Algorithmus in Frage stellt, sind Ameisen-Straßen, die zu versiegten
-Futterquellen führen. Wir konnten in unseren Simulationen beide "Fehlentwicklungen"
-beobachten.
+Duftspuren und deren "Verwitterung" beeinflussen, kaum behandelt.
 
-Man kann den Ant-Algorithmus durch Hinzunahme von GPS, Funktechnik und
-einem großen Arbeitsspeicher zur modifizieren, um ein solches Fehlverhalten
-zu erkennen oder zu verhindern, aber diese Modifikationen setzen
-folgendes voraus:
 
-- elektrische Energie
-- Rechenleistung
-- mindestens die Größe des Chips 
-- bedenkenlose Anwendung von Funkwellen
-- Speichermedium
+
 
 Raketensteuerungen von Atombomben werden oft von pneumatischen (Staubsaugermotoren und Klappen
 wie bei Zuse II) oder hydraulischen Systemen betrieben, damit sie bei einem
@@ -118,56 +71,154 @@ mir noch eine Referenz)
 
 
 
-# Notes
-
-We added a simple traffic jam control to each unit and measured a better food supply.
 
 
-This demo file is
-intended[@Tentschert2000] to serve as demo. I wish you the best[@li2014chaos] of success.
-test test[@gonzalez2017smells] ...
+# Related Work (not ready)
 
-Building robots in hardware to test a swarm algorithm is possible, but
-expensive [hardware](https://en.wikipedia.org/wiki/Swarm_robotic_platforms)
-
-A hardware specific simulation of a single device exists, too:
-[BLE Ant client sim](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.sdk52.v0.9.0%2Fant_examples_ant_fs.html)
-
-Using VM with router/device firmware and a network layout should be
-interessting: [Network sim](https://www.gns3.com/community)
-
-## Ant algorithm
-
-1.  clever
-
-## Bee algorithm
-
-1.  Ein kleiner teil der Bienen (Scouts) sucht global nach "gärten"
-2.  Da Gärten, wo es viel "Futter" gibt ein großes Areal sind, kommen viele Scouts
-    zum dance-floor zurück mit ähnlichen Koordinaten
-3.  normale Bienen folgen nun den Scouts und verbreiten sich im Areal (Nahsuche)
-4.  ein Teil fliegt als Scout weiter und sucht neue Gärten
-5.  durch die Nahsuche werden schlechte Regionen von den Bienen ausgeschlossen
-    und bessere Regionen "gespeichert"
-6.  Biene, die bessere Region fand, wird neuer Scout und fliegt zum dance floor
-7.  Biene, die in der Region keine Verbesserung nach einer Weile fand, sucht neue Gärten
-
-<!--
-
-\hfill J. Peters
-\hfill \today
-
--->
-
-# Related Work
 intro about solutions and our special new solution/idea.
 iter through related work with focus on different solutions. Why are some aspects open?
 
-# Methods
-Describe technique, structure and data collection of our solution.
 
-# Results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Methods
+
+The simulation of our ant algorithm was splitted into the following parts:
+
+ -  a simulator (doing 1000 loops)
+ -  a world (2 dimensional)
+ -  food tiles (marked as food with a nutritive value)
+ -  pheromone tiles
+ -  30 robot objects (each with our ant algorithm)
+
+In this chapter we explain each part and who we initialized it with fixed
+values. The last chapter is about our ant algorithm and the traffic jam
+control to prevent ant mills.
+
+## Simulated parts and their interaction
+
+We did not want to print any code here to make it easy to implement the
+parts, concept and objects in your preferred system, language or medium.
+
+### World
+
+Our world is a 2 dimensional hex grid. Thus our robots and tiles can only
+placed into that grid. The worlds are generated with 10 different random
+seeds to place food tiles with different area sizes, positions and nutritive
+values. When we measured a new result with a different parameter, we simulated
+it with the same 10 different worlds and build a cumulative value.
+
+This hex grid is placed on a normal $(x,y)$ coordinate system, but the
+placement of each robot and tile must fit into the hex grid. If we talk about
+distances we use the euclidean distance based on that x and y values.
+
+### Robots (ant)
+
+We initialized the simulator with 30 ants placed on $(0,0)$ in the world (we call it *home*).
+Thus they start with a traffic jam. Each ant has a *hunger level*. If an
+ant does not reach any food or carries it to home, the hunger level
+is increment by one. If the limit reaches **50**, it dies immediately and
+respawns at home. Every ant is awaked by each simulator iteration and
+runs our ant algorithm with traffic jam control.
+
+Because of the hex grid, the ant can only move to 6 neighbor fields. For
+Example if the ant starts at $(0,0)$ and is awaked by the simulator, it can
+make a step to $(-1.0, 0.0)$, $(1.0, 0.0)$, $(-0.5, 1.0)$, $(-0.5, -1.0)$, $(0.5, 1.0)$ or $(0.5, -1.0)$.
+
+### Food tiles
+
+Every food tile is part of an food area. In a world generated by a seed
+these areas can have a size between 1 and 16 tiles. A world can have 
+up to $30$ areas. Each tile is generated with a nutritive value between $1$ and $20$.
+If an ant reaches the food tile, the nutritive value is decremented by one.
+If the nutritive value is zero, the food tile is deleted immediately.
+The initial placement of the areas is handled by a random seed. There
+are two different concepts placing them with a maximal area distance
+of $20$ ($\pm$ 5):
+
+ -  spray
+ -  ordered
+
+The spray concept setting an area on a random position and place the next
+area randomly (but not to far away). Finally the sprayed areas are
+centered in the middle of the world.
+
+The ordered concept is a grid arranged around the ant home location.
+The position is very by $5$.
+
+We decided to choose these concept to get random worlds with reachable
+food for the ants. Vary the maximal distance of the ant and/or vary
+the maximal distance of each area may focused in future work.
+
+### Pheromone tiles
+
+The pheromone tiles are generated by ants, if an ant finds food and running
+back to home. This is the only way creating tiles. We store the pheromone
+potency internally in an alpha value with $1.0$ as maximum. The ants are able
+to increment this value. A tile with a *potency* less
+than $0.0001$ will be removed by the simulator. You can define it as
+a detection level of an ant, if you want.
+
+After all ants do their work after a simulator iteration, the tiles will
+be deleted or the potency will be reduced by a *evaporation*:
+
+$$ potency_{i+1} = \frac{100 - evaporation}{100} * potency_{i} $$
+
+### Simulator
+
+The Simulator loads the world with it special seed and iterated $1000$ times
+through $30$ ants. Thus a single ant is being $wakeup()$ for $1000$ times to
+walk, detect, collect or setting/changing a pheromone tile.
+
+
+
+## Ant algorithm with traffic jam control
+
+todo ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Results (not ready)
+
 intro about selected data, getting them and how we analyse them
+
+
+
+
 
 ## Definitions and Taxonomy
 
@@ -202,9 +253,45 @@ Subsection text here.
 intro, offer explanation and reference to literature
 
 
-# Conclusion
+# Conclusion (not ready)
 
-...
+Ebenso gibt
+es beim Ant-Algorithmus einen Aspekt, der bei der ältesten Art, den Wanderameisen,
+besondere Aufmerksamkeit verdient: "Ameisenmülen". In diesem Fall laufen
+alle Ameisen im Kreis und sterben an Erschöpfung, da sie so keine weiteren
+Futerquellen finden. Ein weiterer Punkt, der einen Erfolg eines zu primitiven
+Ant-Algorithmus in Frage stellt, sind Ameisen-Straßen, die zu versiegten
+Futterquellen führen. Wir konnten in unseren Simulationen beide "Fehlentwicklungen"
+beobachten.
+
+Man kann den Ant-Algorithmus durch Hinzunahme von GPS, Funktechnik und
+einem großen Arbeitsspeicher zur modifizieren, um ein solches Fehlverhalten
+zu erkennen oder zu verhindern, aber diese Modifikationen setzen
+folgendes voraus:
+
+- elektrische Energie
+- Rechenleistung
+- mindestens die Größe des Chips 
+- bedenkenlose Anwendung von Funkwellen
+- Speichermedium
+
+
+Es ist also nicht vollkommen abwegig, einen Ant- Algorithmus so simple wie 
+möglich zu halten, der die Umge- bung als Massenspeicher nutzt, welche mit 
+dem Operations- gebiet mitwächst. Wir haben diesen Aspekt der Einfachheit 
+in Hinblick auf Erfolg und Robustheit bzgl. äußerer Parameter untersucht 
+und kommen zu dem Ergebnis, dass auch andere natürliche Aspekte der 
+Wanderameise eine wichtige Rolle Spielen müssen, was diese Spezies so 
+lange parallel zu anderen Ameisenarten hat erfolgreich koexistieren lassen.
+
+
+
+
+
 
 **Future Work**: new open questions? how can we find answers in the future?
 How can we use our solutions in the future?
+
+
+
+
