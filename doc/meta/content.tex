@@ -62,11 +62,77 @@ Literatur die Ant-Algorithmen im Detail an, so wird der Erfolg einer
 Ameisen-Kolonie bei gewählten Parametern, die das Legen der Duftspuren
 und deren ``Verwitterung'' beeinflussen, kaum behandelt.
 
-\section{Related Work (not ready)}\label{related-work-not-ready}
+\section{Related Work}\label{relatedWork}
 
-intro about solutions and our special new solution/idea. iter through
-related work with focus on different solutions. Why are some aspects
-open?
+We searched for a very common ant algorithm and we did not find
+\emph{the} ant algorithm.
+
+The first ant algorithm is documented at ~\cite{colorni1991} in 1991 and
+they try to find a heuristic to solve the traveling salesperson problem
+(TSP).
+
+\ldots{}
+
+These points are very common in an ant algorithm:
+
+\begin{itemize}
+\tightlist
+\item
+  if ant found food, it runs back to home (\emph{homing})
+\item
+  ant ``looks'' around
+\item
+  if ant found a high potency pheromone location, it makes it more
+  ``dusty'' with a additional pheromone secret
+\item
+  pheromones lost their potency by time
+\item
+  ant does a random walk (but not going backwards) or goes to the high
+  potency pheromone location
+\item
+  ant makes only one ``move'' after a decision
+\end{itemize}
+
+These points may differ in every ant algorithm we found:
+
+\begin{itemize}
+\tightlist
+\item
+  let single ants run on a line many times
+\item
+  initial position and initial potency of pheromone tiles
+\item
+  initial ant positions
+\item
+  the concept, how an ant running back to home
+\item
+  ant speed
+\item
+  setting or not setting pheromone tiles all the time
+\item
+  using or not using a blur effect on pheromone tiles
+\item
+  a concept for born and death of an ant
+\item
+  the concept how the ant makes their decision (the ``looking around'')
+\item
+  objects between food tiles and home location
+\end{itemize}
+
+One of the basic problems is, how the ant makes their decision. We start
+our simulation \emph{without initial pheromone trails} and \emph{our
+ants have no eyes} or getting information about food locations. In the
+publications we study, they main idea was to find a shortest way to
+known food positions. Their ants made a decision on that information.
+
+Until now the ant algorithm is used to find short trails to a single
+food location in a scenario with given initial pheromone trails. In
+these scenarios ant mills and high frequented routes to empty food areas
+are less possible. Their simulations stops after the food area is empty
+or (because they focused only on the building of trails) the food area
+is not decremented. We found a focus on simulating ant mills in
+~\cite{Couzin139} but not with a combination of building initial
+pheromone trails by the ants or searching for food.
 
 \section{Methods}\label{methods}
 
@@ -150,7 +216,7 @@ next area randomly (but not to far away). Finally the sprayed areas are
 centered in the middle of the world.
 
 The ordered concept is a grid arranged around the ant home location. The
-position is very by \(5\).
+position is vary by \(5\).
 
 We decided to choose these concept to get random worlds with reachable
 food for the ants. Vary the maximal distance of the ant and/or vary the
@@ -177,12 +243,148 @@ times through \(30\) ants. Thus a single ant is being \(wakeup()\) for
 \(1000\) times to walk, detect, collect or setting/changing a pheromone
 tile.
 
-\subsection{Ant algorithm with traffic jam
-control}\label{ant-algorithm-with-traffic-jam-control}
+\subsection{Traffic jam controlled
+algorithm}\label{traffic-jam-controlled-algorithm}
 
-todo \ldots{}
+We need a score array to prefer special directions based on the
+orientation of the ant. This is motivated by the following aspects:
 
-\section{Results (not ready)}\label{results-not-ready}
+\begin{itemize}
+\tightlist
+\item
+  sensor placement
+\item
+  prefer running forward
+\item
+  prefer alternative sideways instead of the main (maybe not optimal)
+  trail
+\end{itemize}
+
+Every ant follows this simple logic, after the simulator wakes it up.
+Initial the ant is in \emph{search} mode and set to position \((0,0)\) =
+\emph{home}:
+
+\begin{itemize}
+\tightlist
+\item
+  I am in traffic \emph{jam} mode
+
+  \begin{itemize}
+  \tightlist
+  \item
+    running 1 step forward
+  \item
+    decrements my traffic value
+  \item
+    if traffic value = 0: switch to search mode
+  \item
+    \textbf{SLEEP} until Wake up
+  \end{itemize}
+\item
+  scanning
+
+  \begin{itemize}
+  \tightlist
+  \item
+    getting potency of pheromone tiles around me
+  \item
+    count ants around me
+  \item
+    I am on a pheromone tile:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      modify pheromone potency based on score
+    \end{itemize}
+  \item
+    I am on a food tile:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      get nutritive value and store it, if it is bigger than my last
+      stored one
+    \item
+      switch to \emph{homing} mode
+    \end{itemize}
+  \item
+    I am not on a tile, but I am in \emph{homing} mode:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      create pheromone tile
+    \item
+      modify pheromone potency based on score
+    \end{itemize}
+  \end{itemize}
+\item
+  I am in \emph{homing} mode and I am at home:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    switch to \emph{search} mode
+  \end{itemize}
+\item
+  moving
+\item
+  \textbf{SLEEP} until Wake up
+\end{itemize}
+
+The modification of the pheromone potency of a pheromone tile is
+calculated by this formulas:
+
+\emph{homing} mode:
+
+Not in \emph{homing} mode:
+
+\begin{itemize}
+\tightlist
+\item
+  if ant found food, it runs back to home (\emph{homing})
+\item
+  ant ``looks'' around
+\item
+  if ant found a high potency pheromone location, it makes it more
+  ``dusty'' with a additional pheromone secret
+\item
+  pheromones lost their potency by time
+\item
+  ant does a random walk (but not going backwards) or goes to the high
+  potency pheromone location
+\item
+  ant makes only one ``move'' after a decision
+\end{itemize}
+
+These points may differ in every ant algorithm we found:
+
+\begin{itemize}
+\tightlist
+\item
+  let single ants run on a line many times
+\item
+  initial position and initial potency of pheromone tiles
+\item
+  initial ant positions
+\item
+  the concept, how an ant running back to home
+\item
+  ant speed
+\item
+  setting or not setting pheromone tiles all the time
+\item
+  using or not using a blur effect on pheromone tiles
+\item
+  a concept for born and death of an ant
+\item
+  the concept how the ant makes their decision (the ``looking around'')
+\item
+  objects between food tiles and home location
+\end{itemize}
+
+\section{Results}\label{results}
 
 intro about selected data, getting them and how we analyse them
 
@@ -243,7 +445,15 @@ Subsection text here.
 
 intro, offer explanation and reference to literature
 
-\section{Conclusion (not ready)}\label{conclusion-not-ready}
+\section{Conclusion}\label{conclusion}
+
+Our ant algorithm is a \emph{local algorithm} ~\cite{suomela2013}. It is
+distributed (reacting on pheromone ``data'' place by other
+participants), running in constant time \footnote{Running in constant
+  time is not really true. We use a sorting algorithm to select the best
+  pheromone tile as new location. But getting the maximum value in a set
+  6 values (hex grid!) is not really complicated.} and it is independent
+of the size of the network (number of ants).
 
 Ebenso gibt es beim Ant-Algorithmus einen Aspekt, der bei der ältesten
 Art, den Wanderameisen, besondere Aufmerksamkeit verdient:

@@ -72,11 +72,58 @@ Duftspuren und deren "Verwitterung" beeinflussen, kaum behandelt.
 
 
 
-# Related Work (not ready)
+# Related Work {#relatedWork}
 
-intro about solutions and our special new solution/idea.
-iter through related work with focus on different solutions. Why are some aspects open?
+We searched for a very common ant algorithm and we did not find *the* ant algorithm.
 
+The first ant algorithm is documented at [@colorni1991] in 1991 and they
+try to find a heuristic to solve the traveling salesperson problem (TSP).
+
+
+
+
+...
+
+
+
+
+
+These points are very common in an ant algorithm:
+
+ -  if ant found food, it runs back to home (*homing*)
+ -  ant "looks" around
+ -  if ant found a high potency pheromone location, it makes it more "dusty" with a additional pheromone secret
+ -  pheromones lost their potency by time
+ -  ant does a random walk (but not going backwards) or goes to the high potency pheromone location
+ -  ant makes only one "move" after a decision
+
+These points may differ in every ant algorithm we found:
+
+ -  let single ants run on a line many times
+ -  initial position and initial potency of pheromone tiles
+ -  initial ant positions
+ -  the concept, how an ant running back to home
+ -  ant speed
+ -  setting or not setting pheromone tiles all the time
+ -  using or not using a blur effect on pheromone tiles
+ -  a concept for born and death of an ant
+ -  the concept how the ant makes their decision (the "looking around")
+ -  objects between food tiles and home location
+
+One of the basic problems is, how the ant makes their decision. We start
+our simulation *without initial pheromone trails*
+and *our ants have no eyes* or getting information about food locations.
+In the publications we study, they main idea was to find a shortest
+way to known food positions. Their ants made a decision on that information.
+
+Until now the ant algorithm is used to find short trails to a single
+food location in a scenario with given initial pheromone trails. In these
+scenarios ant mills and high frequented routes to empty food areas are
+less possible. Their simulations stops after the food area is empty
+or (because they focused only on the building of trails) the food area
+is not decremented. We found a focus on simulating ant mills in [@Couzin139]
+but not with a combination of building initial pheromone trails
+by the ants or searching for food.
 
 
 
@@ -158,7 +205,7 @@ area randomly (but not to far away). Finally the sprayed areas are
 centered in the middle of the world.
 
 The ordered concept is a grid arranged around the ant home location.
-The position is very by $5$.
+The position is vary by $5$.
 
 We decided to choose these concept to get random worlds with reachable
 food for the ants. Vary the maximal distance of the ant and/or vary
@@ -186,32 +233,74 @@ walk, detect, collect or setting/changing a pheromone tile.
 
 
 
-## Ant algorithm with traffic jam control
+## Traffic jam controlled algorithm
 
-todo ...
+We need a score array to prefer special directions based on the orientation
+of the ant. This is motivated by the following aspects:
+
+ -  sensor placement
+ -  prefer running forward
+ -  prefer alternative sideways instead of the main (maybe not optimal) trail
+
+Every ant follows this simple logic, after the simulator wakes it up. Initial
+the ant is in *search* mode and set to position $(0,0)$ = *home*:
+
+ -  I am in traffic *jam* mode
+     -  running 1 step forward
+     -  decrements my traffic value
+     -  if traffic value = 0: switch to search mode
+     -  **SLEEP** until Wake up
+ -  scanning
+     -  getting potency of pheromone tiles around me
+     -  count ants around me
+     -  I am on a pheromone tile:
+         -  modify pheromone potency based on score
+     -  I am on a food tile:
+         -  get nutritive value and store it, if it is bigger than my last stored one
+         -  switch to *homing* mode
+     -  I am not on a tile, but I am in *homing* mode:
+         -  create pheromone tile
+         -  modify pheromone potency based on score
+ -  I am in *homing* mode and I am at home:
+     -  switch to *search* mode
+ -  moving
+ -  **SLEEP** until Wake up
+
+
+
+The modification of the pheromone potency of a pheromone tile is calculated
+by this formulas:
+
+*homing* mode:
+
+Not in *homing* mode:
+
+
+ -  if ant found food, it runs back to home (*homing*)
+ -  ant "looks" around
+ -  if ant found a high potency pheromone location, it makes it more "dusty" with a additional pheromone secret
+ -  pheromones lost their potency by time
+ -  ant does a random walk (but not going backwards) or goes to the high potency pheromone location
+ -  ant makes only one "move" after a decision
+
+These points may differ in every ant algorithm we found:
+
+ -  let single ants run on a line many times
+ -  initial position and initial potency of pheromone tiles
+ -  initial ant positions
+ -  the concept, how an ant running back to home
+ -  ant speed
+ -  setting or not setting pheromone tiles all the time
+ -  using or not using a blur effect on pheromone tiles
+ -  a concept for born and death of an ant
+ -  the concept how the ant makes their decision (the "looking around")
+ -  objects between food tiles and home location
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Results (not ready)
+# Results
 
 intro about selected data, getting them and how we analyse them
 
@@ -252,7 +341,14 @@ Subsection text here.
 intro, offer explanation and reference to literature
 
 
-# Conclusion (not ready)
+# Conclusion
+
+Our ant algorithm is a *local algorithm* [@suomela2013]. It is distributed
+(reacting on pheromone "data" place by other participants), running in constant
+time [^1] and it is independent of the size of the network (number of ants). 
+
+
+
 
 Ebenso gibt
 es beim Ant-Algorithmus einen Aspekt, der bei der ältesten Art, den Wanderameisen,
@@ -293,4 +389,7 @@ How can we use our solutions in the future?
 
 
 
+[^1]: Running in constant time is not really true. We use a sorting algorithm to
+select the best pheromone tile as new location. But getting the maximum value
+in a set 6 values (hex grid!) is not really complicated.
 
