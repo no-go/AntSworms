@@ -152,6 +152,9 @@ The simulation of our ant algorithm was splitted into the following parts:
  -  pheromone tiles
  -  30 robot objects (each with our ant algorithm)
 
+Additionally to the normal values we need in the simulation, we logged
+the *mean of the ant age* and the *last 10 steps before dying*.
+
 In this chapter we explain each part and who we initialized it with fixed
 values. The last chapter is about our ant algorithm and the traffic jam
 control to prevent ant mills.
@@ -231,6 +234,24 @@ The Simulator loads the world with it special seed and iterated $1000$ times
 through $30$ ants. Thus a single ant is being $wakeup()$ for $1000$ times to
 walk, detect, collect or setting/changing a pheromone tile.
 
+### Ant age & last steps
+
+In order to be able to establish a statement about the success of all simulated
+worlds with variation of selected parameters, we decided to log the mean
+of the ant age after each simulation iteration. To detect a bad behavior like
+ant mills and high frequented routes to empty food areas we logged the last
+10 steps of the ant before its death. Counting the revisited locations
+and measure the running distance let us understand, what happened to the
+ant (running in circles or continuous forward).
+
+The age of an ant is the number of "wakeups" from the simulator. Normally
+an ant will die without food after $50$ wakeups. If an ant finds 1 nutritive,
+it sets its *hunger level back to zero* and the ant lives longer. Thus a high
+average value of the ant age is a good indicator, that the ant colony finds
+continuously food and is not running in circles all the time or being on a
+dreadful track. 
+
+
 ## Traffic jam controlled algorithm
 
 We used a score array to prefer special directions based on the orientation
@@ -282,19 +303,26 @@ the ant is in *search* mode and set to position $(0,0)$ = *home*:
      - Choose a new orientation based on the highest scored tiles around me
      - running 1 step forward
 
-
-
 The modification of the pheromone potency of a pheromone tile is calculated
 by this formulas:
 
 Ant is in *homing* mode:
 
+
+
+
 Ant is not in *homing* mode:
+
+
 
 Our random orientation is modified a bit to permit running backwards. Only
 running forward, left or right is allowed.
 
-## Aging
+
+
+
+
+
 
 
 
