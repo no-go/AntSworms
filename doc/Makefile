@@ -2,7 +2,7 @@ OUTFILE = lightweight_ant_algorithm_with_ant_mill_protection
 
 all:
 #	sed -E "s/\[\@([^ ]+)\]/~\\cite\{\1\}/g" Content.md > _cites.md
-	pandoc Content.md -o meta/content.tex \
+	pandoc Readme.md -o meta/content.tex \
 #		--biblio=meta/_bibi.bib \
 #		--filter=pandoc-citeproc
 	sed -i -E "s/\{\[\}\@([^ ]+)\{\]\}/~\\\\cite\{\1\}/g" meta/content.tex
