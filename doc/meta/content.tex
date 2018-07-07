@@ -246,8 +246,8 @@ tile.
 \subsection{Traffic jam controlled
 algorithm}\label{traffic-jam-controlled-algorithm}
 
-We need a score array to prefer special directions based on the
-orientation of the ant. This is motivated by the following aspects:
+We used a score array to prefer special directions based on the
+orientation of the ant. This was motivated by the following aspects:
 
 \begin{itemize}
 \tightlist
@@ -259,6 +259,11 @@ orientation of the ant. This is motivated by the following aspects:
   prefer alternative sideways instead of the main (maybe not optimal)
   trail
 \end{itemize}
+
+The traffic jam control based on a single \emph{JAM} parameter. We set
+it at as a constant on each simulation. We focused on modifying this
+value and who it takes effect on collected food and the mean age of the
+ant colony.
 
 Every ant follows this simple logic, after the simulator wakes it up.
 Initial the ant is in \emph{search} mode and set to position \((0,0)\) =
@@ -274,14 +279,14 @@ Initial the ant is in \emph{search} mode and set to position \((0,0)\) =
   \item
     running 1 step forward
   \item
-    decrements my traffic value
+    decrements my traffic step value
   \item
-    if traffic value = 0: switch to search mode
+    if traffic step value = 0: switch to search mode
   \item
     \textbf{SLEEP} until Wake up
   \end{itemize}
 \item
-  scanning
+  \textbf{scan and modify}
 
   \begin{itemize}
   \tightlist
@@ -328,61 +333,66 @@ Initial the ant is in \emph{search} mode and set to position \((0,0)\) =
     switch to \emph{search} mode
   \end{itemize}
 \item
-  moving
-\item
-  \textbf{SLEEP} until Wake up
+  \textbf{move}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    I am in \emph{homing} mode:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      orient to \((0,0)\) and go forward
+    \item
+      \textbf{SLEEP} until Wake up
+    \end{itemize}
+  \item
+    there are \(\geq\) JAM ants around me:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      set a random orientation
+    \item
+      running 1 step forward
+    \item
+      set traffic step value = 5 -1
+    \item
+      switch to traffic \emph{jam} mode
+    \item
+      \textbf{SLEEP} until Wake up
+    \end{itemize}
+  \item
+    There are no pheromone or food tiles around me:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      set a random orientation
+    \item
+      running 1 step forward
+    \item
+      \textbf{SLEEP} until Wake up
+    \end{itemize}
+  \item
+    Choose a new orientation based on the highest scored tiles around me
+  \item
+    running 1 step forward
+  \end{itemize}
 \end{itemize}
 
 The modification of the pheromone potency of a pheromone tile is
 calculated by this formulas:
 
-\emph{homing} mode:
+Ant is in \emph{homing} mode:
 
-Not in \emph{homing} mode:
+Ant is not in \emph{homing} mode:
 
-\begin{itemize}
-\tightlist
-\item
-  if ant found food, it runs back to home (\emph{homing})
-\item
-  ant ``looks'' around
-\item
-  if ant found a high potency pheromone location, it makes it more
-  ``dusty'' with a additional pheromone secret
-\item
-  pheromones lost their potency by time
-\item
-  ant does a random walk (but not going backwards) or goes to the high
-  potency pheromone location
-\item
-  ant makes only one ``move'' after a decision
-\end{itemize}
+Our random orientation is modified a bit to permit running backwards.
+Only running forward, left or right is allowed.
 
-These points may differ in every ant algorithm we found:
-
-\begin{itemize}
-\tightlist
-\item
-  let single ants run on a line many times
-\item
-  initial position and initial potency of pheromone tiles
-\item
-  initial ant positions
-\item
-  the concept, how an ant running back to home
-\item
-  ant speed
-\item
-  setting or not setting pheromone tiles all the time
-\item
-  using or not using a blur effect on pheromone tiles
-\item
-  a concept for born and death of an ant
-\item
-  the concept how the ant makes their decision (the ``looking around'')
-\item
-  objects between food tiles and home location
-\end{itemize}
+\subsection{Aging}\label{aging}
 
 \section{Results}\label{results}
 

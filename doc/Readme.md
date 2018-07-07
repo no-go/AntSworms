@@ -231,26 +231,28 @@ The Simulator loads the world with it special seed and iterated $1000$ times
 through $30$ ants. Thus a single ant is being $wakeup()$ for $1000$ times to
 walk, detect, collect or setting/changing a pheromone tile.
 
-
-
 ## Traffic jam controlled algorithm
 
-We need a score array to prefer special directions based on the orientation
-of the ant. This is motivated by the following aspects:
+We used a score array to prefer special directions based on the orientation
+of the ant. This was motivated by the following aspects:
 
  -  sensor placement
  -  prefer running forward
  -  prefer alternative sideways instead of the main (maybe not optimal) trail
+
+The traffic jam control based on a single *JAM* parameter. We set it at as a constant
+on each simulation. We focused on modifying this value and who it takes effect
+on collected food and the mean age of the ant colony.
 
 Every ant follows this simple logic, after the simulator wakes it up. Initial
 the ant is in *search* mode and set to position $(0,0)$ = *home*:
 
  -  I am in traffic *jam* mode
      -  running 1 step forward
-     -  decrements my traffic value
-     -  if traffic value = 0: switch to search mode
+     -  decrements my traffic step value
+     -  if traffic step value = 0: switch to search mode
      -  **SLEEP** until Wake up
- -  scanning
+ -  **scan and modify**
      -  getting potency of pheromone tiles around me
      -  count ants around me
      -  I am on a pheromone tile:
@@ -263,40 +265,36 @@ the ant is in *search* mode and set to position $(0,0)$ = *home*:
          -  modify pheromone potency based on score
  -  I am in *homing* mode and I am at home:
      -  switch to *search* mode
- -  moving
- -  **SLEEP** until Wake up
+ -  **move**
+     -  I am in *homing* mode:
+         -  orient to $(0,0)$ and go forward
+         -  **SLEEP** until Wake up
+     -  there are $\geq$ JAM ants around me:
+        - set a random orientation
+        - running 1 step forward
+        - set traffic step value = 5 -1
+        - switch to traffic *jam* mode
+        -  **SLEEP** until Wake up
+     - There are no pheromone or food tiles around me:
+        - set a random orientation
+        - running 1 step forward
+        -  **SLEEP** until Wake up
+     - Choose a new orientation based on the highest scored tiles around me
+     - running 1 step forward
 
 
 
 The modification of the pheromone potency of a pheromone tile is calculated
 by this formulas:
 
-*homing* mode:
+Ant is in *homing* mode:
 
-Not in *homing* mode:
+Ant is not in *homing* mode:
 
+Our random orientation is modified a bit to permit running backwards. Only
+running forward, left or right is allowed.
 
- -  if ant found food, it runs back to home (*homing*)
- -  ant "looks" around
- -  if ant found a high potency pheromone location, it makes it more "dusty" with a additional pheromone secret
- -  pheromones lost their potency by time
- -  ant does a random walk (but not going backwards) or goes to the high potency pheromone location
- -  ant makes only one "move" after a decision
-
-These points may differ in every ant algorithm we found:
-
- -  let single ants run on a line many times
- -  initial position and initial potency of pheromone tiles
- -  initial ant positions
- -  the concept, how an ant running back to home
- -  ant speed
- -  setting or not setting pheromone tiles all the time
- -  using or not using a blur effect on pheromone tiles
- -  a concept for born and death of an ant
- -  the concept how the ant makes their decision (the "looking around")
- -  objects between food tiles and home location
-
-
+## Aging
 
 
 
