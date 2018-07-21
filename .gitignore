@@ -1,17 +1,17 @@
-*.o
-*.obj
+src/*.o
+src/*.obj
 
-*.so
-*.dylib
-*.dll
+src/*.so
+src/*.dylib
+src/*.dll
 
-*.la
-*.a
-*.lib
+src/*.la
+src/*.a
+src/*.lib
 
-*.exe
-*.out
-*.app
+src/*.exe
+src/*.out
+src/*.app
 
 doc/_cites.md
 doc/*.aux
@@ -26,4 +26,4 @@ doc/*.out
 doc/*.vrb
 doc/*.dvi
     
-sworms
+src/sworms

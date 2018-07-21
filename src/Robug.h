@@ -4,6 +4,8 @@
 #include "Item.h"
 #include "Direction.h"
 #include "Color.h"
+class World;
+#include "World.h"
 
 /**
  * a bug robot
@@ -19,32 +21,8 @@ public:
         color = {80,80,80};
     }
     
-    //void hey(World * world) {}
-    
-    void move() {
-        
-        if (orient == Direction::N) {
-            y++;
-        } else if (orient == Direction::NE) {
-            x++;
-            y++;
-        } else if (orient == Direction::E) {
-            x++;
-        } else if (orient == Direction::SE) {
-            x++;
-            y--;
-        } else if (orient == Direction::S) {
-            y--;
-        } else if (orient == Direction::SW) {
-            x--;
-            y--;
-        } else if (orient == Direction::W) {
-            x--;
-        } else if (orient == Direction::NW) {
-            x--;
-            y++;
-        }
-    }
+    void wakeup(World * world);
+    void move();
 };
 
 #endif
