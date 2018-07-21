@@ -45,7 +45,7 @@ public:
         
         for (x = 0; x < _width; ++x) {
             for(y = 0; y < _height; ++y) {
-                set(x, y, background, false);
+                set(x, y, World::background, false);
             }
         }
     }

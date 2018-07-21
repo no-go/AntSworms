@@ -18,7 +18,5 @@ In the future this simulates massive robot szenarios and log their events.
 - grandle or maven
 - better class names
 - add alpha as color
-- code split into h, hpp, cpp and use extern as force against include loops and usage loops
-- some code parts should be in world and not in the robug class 
 
 

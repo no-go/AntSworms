@@ -17,10 +17,24 @@ using namespace std;
 Color World::background = {255, 255, 255, 255};
 
 void World::updateAll() {
+    
     for (auto & rob : robs) {
         rob.wakeup(this);
     }
     
+    // evaporation
+    Color c;
+    for (int x = 0; x < _width; ++x) {
+        for(int y = 0; y < _height; ++y) {
+            c = get(x, y, false);
+            if (!c.equal(Robug::color)) {
+                if (c.R <= 250) c.R += 5;
+                if (c.G <= 250) c.G += 5;
+                if (c.B <= 250) c.B += 5;
+                set(x, y, c, false);
+            }
+        }
+    }
     
     for (auto & poi : pois) {
         set(poi.x, poi.y, poi.color);

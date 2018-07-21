@@ -14,6 +14,7 @@ class Robug : public Item {
 public:
     int orient;
     Color lastColor;
+    static Color color;
     
     Robug();
     
