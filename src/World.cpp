@@ -14,10 +14,13 @@ using namespace std;
 #include "Color.h"
 #include "World.h"
 
+Color World::background = {255, 255, 255, 255};
+
 void World::updateAll() {
     for (auto & rob : robs) {
         rob.wakeup(this);
     }
+    
     
     for (auto & poi : pois) {
         set(poi.x, poi.y, poi.color);
@@ -49,6 +52,7 @@ Color World::get(int x, int y, bool fromMiddle) {
     clr.R = _pixbuf[3*(y*_width+x)];
     clr.G = _pixbuf[3*(y*_width+x)+1];
     clr.B = _pixbuf[3*(y*_width+x)+2];
+    clr.A = _alpha[(y*_width+x)];
     return clr;
 }
 
@@ -83,6 +87,7 @@ bool World::set(int x, int y, Color clr, bool fromMiddle) {
     _pixbuf[3*(y*_width+x)] = clr.R;
     _pixbuf[3*(y*_width+x)+1] = clr.G;
     _pixbuf[3*(y*_width+x)+2] = clr.B;
+    _alpha[(y*_width+x)] = clr.A;
     return isValid;
 }
 

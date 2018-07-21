@@ -13,13 +13,9 @@ class World;
 class Robug : public Item {
 public:
     int orient;
+    Color lastColor;
     
-    Robug() {
-        x = 0;
-        y = 0;
-        orient = Direction::STOP;
-        color = {80,80,80};
-    }
+    Robug();
     
     void wakeup(World * world);
     void move();

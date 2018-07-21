@@ -4,12 +4,31 @@
 #include "Robug.h"
 #include "World.h"
 
+Robug::Robug() {
+    x = 0;
+    y = 0;
+    orient = Direction::STOP;
+    color = {185,0,0,255};
+    lastColor = World::background;
+}
+
 void Robug::wakeup(World * world) {
     int last = orient;
+    int lastx = x;
+    int lasty = y;
+    
     //rob.orient = random() % 8;
     orient = (last + (1 - world->random() % 3)) % 8;
-    world->set(x, y, world->background);
+
     move();
+
+    if (!lastColor.equal(color)) {
+        if (lastColor.R > 0) lastColor.R -= 15;
+        if (lastColor.G > 0) lastColor.G -= 15;
+        if (lastColor.B > 0) lastColor.B -= 15;
+        world->set(lastx, lasty, lastColor);
+    }
+    lastColor = world->get(x, y);
     world->set(x, y, color);
 }
 

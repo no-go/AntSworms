@@ -24,23 +24,24 @@ class Robug;
 class World : public Fl_Box {
     Fl_RGB_Image * _bild = nullptr;
     unsigned char *_pixbuf;
+    unsigned char *_alpha;
     int _width;
     int _height;
 
 public:
 
-    Color background;
+    static Color background;
     vector<Poi> pois;
     vector<Sensor> sensors;
     vector<Robug> robs;
 
     World(int X, int Y, int W, int H, const char*L=0) : Fl_Box(X,Y,W,H,L) {
-        background = {255, 255, 255};
         int x,y;
         
         _width = W;
         _height = H;
         _pixbuf = new unsigned char[_width*_height*3];
+        _alpha = new unsigned char[_width*_height];
         
         for (x = 0; x < _width; ++x) {
             for(y = 0; y < _height; ++y) {

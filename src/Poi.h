@@ -17,6 +17,7 @@ public:
         color.R = 50;
         color.G = 50;
         color.B = 255;
+        color.A = 255;
         value = 20.0;
     }
 };

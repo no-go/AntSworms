@@ -16,7 +16,7 @@ using namespace std;
 #include "Sensor.h"
 #include "Robug.h"
 
-#define ANTS 50000
+#define ANTS 5000
 #define SIM_SPEED 0.02
 #define RANDOM_SEED 4211
 

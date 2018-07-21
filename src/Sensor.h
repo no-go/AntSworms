@@ -12,7 +12,7 @@ public:
     float value;
     
     Sensor() {
-        color = {255,155,80};
+        color = {255,155,80,255};
         value = 0.0;
     }
 };
