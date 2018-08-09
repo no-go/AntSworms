@@ -1,4 +1,6 @@
 src/*.o
+src/robot_impl/*.o
+src/setups/*.o
 src/*.obj
 
 src/*.so
@@ -13,7 +15,6 @@ src/*.exe
 src/*.out
 src/*.app
 
-doc/_cites.md
 doc/*.aux
 doc/*.bbl
 doc/*.blg

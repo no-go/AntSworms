@@ -1,5 +1,5 @@
-#ifndef _ROBUG_H
-#define _ROBUG_H 1
+#ifndef _ROBOT_H
+#define _ROBOT_H 1
 
 #include "Item.h"
 #include "Direction.h"
@@ -7,18 +7,15 @@
 class World;
 #include "World.h"
 
-/**
- * a bug robot
- */
-class Robug : public Item {
+class Robot : public Item {
 public:
     int orient;
-    Color lastColor;
     static Color color;
     
-    Robug();
-    
-    void wakeup(World * world);
+    Robot() {}
+    virtual ~Robot() = 0;
+    virtual void wakeup(World * world) = 0;
+
     void move();
 };
 

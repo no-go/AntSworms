@@ -12,14 +12,12 @@
 using namespace std;
 
 #include "World.h"
-#include "Poi.h"
-#include "Sensor.h"
-#include "Robug.h"
 
-#define ANTS 800
+//----------------------------------
 #define SIM_SPEED 0.02
 #define RANDOM_SEED 4211
-
+#include "setups/test1.h"
+//----------------------------------
 
 void winUpdate(void *data) {
     static unsigned i = 0;
@@ -42,17 +40,7 @@ int main(int argc, char ** argv) {
     World * world = new World(0, 0, width, height);
     world->random(RANDOM_SEED);
     
-    Poi poi1,poi2;
-    poi1.x = 7;
-    poi1.y = 8;
-    poi2.x = -5;
-    poi2.y = -2;
-    world->pois.push_back(poi1);
-    world->pois.push_back(poi2);
-    
-    vector<Robug> ants;
-    ants.resize(ANTS);
-    for (int i=0;i<ANTS;++i) world->robs.push_back(ants[i]);
+    loadSetup(world);
     
     world->updateAll();
     world->refresh();

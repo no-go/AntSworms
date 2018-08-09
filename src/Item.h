@@ -4,7 +4,7 @@
 #include "Color.h"
 
 /**
- * in the world is every non whithe point an item (robug, poi, sensor)
+ * in the world is every non whith point an item (robot, location, tile)
  */
 class Item {
 public:

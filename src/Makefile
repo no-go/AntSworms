@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-Wall -O3 -mtune=native -std=gnu++11
 LDFLAGS=-lm -pthread -lfltk
-OBJS=Robug.o World.o sim.o
+OBJS=Robot.o World.o sim.o robot_impl/Ant.o
 PROGRAM=sworms
 
 all: $(OBJS)

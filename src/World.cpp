@@ -18,8 +18,8 @@ Color World::background = {255, 255, 255, 255};
 
 void World::updateAll() {
     
-    for (auto & rob : robs) {
-        rob.wakeup(this);
+    for (auto * robot : robots) {
+        robot->wakeup(this);
     }
     
     // evaporation
@@ -27,7 +27,7 @@ void World::updateAll() {
     for (int x = 0; x < _width; ++x) {
         for(int y = 0; y < _height; ++y) {
             c = get(x, y, false);
-            if (!c.equal(Robug::color)) {
+            if (!c.equal(Robot::color)) {
                 if (c.R <= 250) c.R += 5;
                 if (c.G <= 250) c.G += 5;
                 if (c.B <= 250) c.B += 5;
@@ -36,12 +36,12 @@ void World::updateAll() {
         }
     }
     
-    for (auto & poi : pois) {
-        set(poi.x, poi.y, poi.color);
+    for (auto & location : locations) {
+        set(location.x, location.y, location.color);
     }
     
-    for (auto & sen : sensors) {
-        set(sen.x, sen.y, sen.color);
+    for (auto & tile : tiles) {
+        set(tile.x, tile.y, tile.color);
     }
 }
 

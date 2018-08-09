@@ -1,17 +1,14 @@
-#ifndef _SENSOR_H
-#define _SENSOR_H 1
+#ifndef _TILE_H
+#define _TILE_H 1
 
 #include "Item.h"
 #include "Color.h"
 
-/**
- * for sensor values
- */
-class Sensor : public Item {
+class Tile : public Item {
 public:
     float value;
     
-    Sensor() {
+    Tile() {
         color = {255,155,80,255};
         value = 0.0;
     }

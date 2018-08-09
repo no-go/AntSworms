@@ -11,12 +11,12 @@ In the future this simulates massive robot szenarios and log their events.
 
 - fltk as gui
 - c++11 code
-- Makefile with unixodie operating system
+- Makefile
+- for unixodie operating system
 
 ## todo
 
 - grandle or maven
-- better class names
 - add alpha as color
 
 

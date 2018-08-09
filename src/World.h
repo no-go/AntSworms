@@ -16,10 +16,10 @@ using namespace std;
 
 #include "Color.h"
 
-#include "Poi.h"
-#include "Sensor.h"
-class Robug;
-#include "Robug.h"
+#include "Location.h"
+#include "Tile.h"
+class Robot;
+#include "Robot.h"
 
 class World : public Fl_Box {
     Fl_RGB_Image * _bild = nullptr;
@@ -31,9 +31,9 @@ class World : public Fl_Box {
 public:
 
     static Color background;
-    vector<Poi> pois;
-    vector<Sensor> sensors;
-    vector<Robug> robs;
+    vector<Location> locations;
+    vector<Tile> tiles;
+    vector<Robot *> robots;
 
     World(int X, int Y, int W, int H, const char*L=0) : Fl_Box(X,Y,W,H,L) {
         int x,y;

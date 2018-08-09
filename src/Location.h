@@ -1,18 +1,18 @@
-#ifndef _POI_H
-#define _POI_H 1
+#ifndef _LOCATION_H
+#define _LOCATION_H 1
 
 #include <string>
-#include "Sensor.h"
+#include "Item.h"
 #include "Color.h"
 
-/**
- * a very interesting point in the world with a name and some functions
- */
-class Poi : public Sensor {
+class Location : public Item {
 public:
     string name;
+    float value;
     
-    Poi() {
+    Location() {
+        color = {255,155,80,255};
+
         name = "food";
         color.R = 50;
         color.G = 50;
